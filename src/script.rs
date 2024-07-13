@@ -65,7 +65,7 @@ use std::path::Path;
 /// Then the text `"I can't recollect, or even recall nowdays"` would be transformed to
 /// `"I can't remember, or even remember nowdays"` before performing a keyword search.
 ///
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, PartialOrd)]
 pub struct Transform {
     pub word: String,
     pub equivalents: Vec<String>,
@@ -90,7 +90,7 @@ pub struct Transform {
 ///
 /// Note the special `@` symbol denotes that the word should be permutated.
 ///
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, PartialOrd)]
 pub struct Synonym {
     pub word: String,
     pub equivalents: Vec<String>,
@@ -111,7 +111,7 @@ pub struct Synonym {
 ///
 /// Then the assembled response would look like `"Really, you think about your life?"`
 ///
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, PartialOrd)]
 pub struct Reflection {
     pub word: String,
     pub inverse: String,
@@ -140,7 +140,7 @@ pub struct Reflection {
 /// Note the special `$[num]` symbol denotes that a replacement with a regex capture group should
 /// occur.
 ///
-#[derive(Serialize, Deserialize, Debug, Clone)]
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, PartialOrd)]
 pub struct Rule {
     pub memorise: bool,
     pub decomposition_rule: String,
@@ -153,7 +153,7 @@ pub struct Rule {
 /// * **rank**: Denotes it's importance over other keywords. Higher rank = Higher priority.
 /// * **rules**: The associated decompositon and reassembly rules
 ///
-#[derive(Serialize, Deserialize, Debug, Clone)]
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, PartialOrd)]
 pub struct Keyword {
     pub key: String,
     pub rank: u8,
@@ -173,7 +173,7 @@ pub struct Keyword {
 /// information in an ELIZA response.
 /// * **keywords**: A set of keywords and their associated decompositon and reassembly rules.
 ///
-#[derive(Default, Serialize, Deserialize)]
+#[derive(Default, Serialize, Deserialize, Debug, Clone, PartialEq, PartialOrd)]
 pub struct Script {
     pub greetings: Vec<String>,
     pub farewells: Vec<String>,

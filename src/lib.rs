@@ -38,7 +38,7 @@ use std::error::Error;
 /// An ELIZA instance.
 ///
 /// This struct is created by the `new()` method. See its documentation for more.
-#[derive(Default)]
+#[derive(Default, Debug, Clone, PartialEq)]
 pub struct Eliza {
     script: Script,
     memory: VecDeque<String>,
